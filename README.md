@@ -1,4 +1,4 @@
-#Creating a basic Kernel Module
+# Creating a basic Kernel Module
 
 Creating a Kernel Module needs 4 things:
 1. Some basic understanding of Kernel space and user space.
@@ -10,26 +10,28 @@ Creating a Kernel Module needs 4 things:
 ### 1. Installing Linux Kernel Headers:
 
 To compile the kernel code you are about to write, you will need the linux kernel headers which can be installed using the following command:
+<br>
 <b>sudo apt-get install linux-headers-$(uname -r)</b> (If you are using apt)
+<br>
 <b>sudo dnf install kernel-headers-$(uname -r)</b> (If you are using dnf)
 
 ### 2. Creating a Makefile:
 
-Compiling Kernel Code is not as simple as just running: <b>gcc my_kernel_module.c</b>
+Compiling Kernel Code is not as simple as just running: <br><b>gcc my_kernel_module.c</b><br>
 We need to use the build present in the kernel header that you installed!
-So to compile kernel code you need to run the command: <b>make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules</b>
+So to compile kernel code you need to run the command: <br><b>make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules</b>
 
-And to remove all the kernel module and accessory stuff built you need to run the command: <b>make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean</b>
+And to remove all the kernel module and accessory stuff built you need to run the command: <br><b>make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean</b>
 
 This can be a bit of a headache so we write a Makefile that goes like this:
 
 <b>
 obj-m += <name of your C file without .c extension>.o
 
-all:
+all:<br>
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
-clean:
+clean:<br>
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 </b>
 
@@ -48,7 +50,7 @@ Compile the C Code that you have typed by running the command: <b>make</b>
 
 New files will be created after compiling like this:
 
-<img src="" />
+![image](https://user-images.githubusercontent.com/97780641/228914283-0cb63ea8-abdd-4f2b-8346-a94daae72dcd.png)
 
 The one you are looking for is <your C file name without .c extension>.ko
 
@@ -59,7 +61,7 @@ To load the Kernel Module, run the command: <b>sudo insmod <your prize>.ko </b>
 ### 7. dmesg is key!
 
 Nothing happened?
-Well run the command: <b>dmesg</b>
+Well run the command: <b>dmesg</b><br>
 There it is! 
 
-<img src="" />
+![image](https://user-images.githubusercontent.com/97780641/228914725-9a9ebc9f-7d2a-4d8c-8f34-692ddb0a7345.png)

@@ -14,7 +14,7 @@ void dfs(struct task_struct *task, int indent) {
     for (i = 0; i < indent; i++) {
         printk(KERN_CONT "\t");
     }
-    printk(KERN_CONT "|--%s[%d]\n", task->comm, task->pid);
+    printk(KERN_CONT "|--Name: %s PID: %d State: %u\n", task->comm, task->pid, task->__state);
 
     list_for_each(list, &task->children) {
         child = list_entry(list, struct task_struct, sibling);

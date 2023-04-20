@@ -32,8 +32,8 @@ char * str_state(unsigned int state) {
         break;
         case TASK_RTLOCK_WAIT:return "RTLOCK_WAIT";
         break;
-        case TASK_FREEZABLE:return "FREEZABLE";
-        break;
+        //case TASK_FREEZABLE:return "FREEZABLE";
+        //break;
         case TASK_KILLABLE:return "KILLABLE";
         break;
         case TASK_STOPPED:return "STOPPED";
